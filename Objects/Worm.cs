@@ -10,9 +10,13 @@ namespace Project1
 {
     class Worm
     {
-        public Vector2 Pos { get; private set; }
+        public Vector2 Pos { get;set; }
         Vector2 Dir;
         public static Texture2D Texture2D { get; set; }
+        public Worm(Vector2 pos)
+        {
+            Pos = pos;
+        }
 
         public Worm(Vector2 pos, Vector2 dir)
         {

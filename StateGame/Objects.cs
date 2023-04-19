@@ -14,12 +14,12 @@ namespace Project1.StateGame
         public static SpriteFont Font { get; set; }
         static Wave[] Waves;
         public static Duck Duck { get; set; }
-        public static List<Worm> Worms=new List<Worm>();
+        public static List<Worm> Worms;
         static Shore[] Shores { get; set; }
         public static Log Log { get; set; }
         public static Island Island { get; set; }
         public static Stone Stone { get; set; }
-        public static int CountWorms=0;
+        public static int CountWorms;
         readonly static Vector2 Speed = new Vector2(-5, 0);
         public static bool FlagDefeat = false;
 
@@ -34,7 +34,8 @@ namespace Project1.StateGame
             Log = new Log(new Vector2(2000, 215), Speed);
             Island = new Island(new Vector2(2300, 655), Speed);
             Stone =new Stone(new Vector2(2400,435),Speed);
-            Worms.Add(new Worm(new Vector2(2000, 700), Speed));
+            Worms=new List<Worm> { new Worm(new Vector2(2000, 700), Speed) };
+            CountWorms = 0;
         }
         public static void DoWaves()
         {
@@ -75,13 +76,13 @@ namespace Project1.StateGame
                 wave.Update();
             foreach (Shore shore in Shores)
                 shore.Update();
-            for (var i=0;i<Worms.Count;i++)
+            foreach(Worm worm in Worms)
             {
-                Worms[i].Update();
-                if (Worms[i].Eat(Duck))
+                worm.Update();
+                if (worm.Eat(Duck))
                 {
                     CountWorms += 1;
-                    Worms.RemoveAt(i);
+                    worm.Pos = new Vector2(2000, 700);
                 }
             }
             Log.Update();
