@@ -67,7 +67,7 @@ namespace Project1
                     if (Keyboard.GetState().IsKeyDown(Keys.Space)) Objects.Duck.Dive();
                     if (Keyboard.GetState().IsKeyDown(Keys.Escape)) state = Stat.SplashScreen;
                     if (Objects.FlagDefeat) state = Stat.Defeat;
-                        break;
+                    break;
                 case Stat.Defeat:
                     Defeat.Update();
                     if (Keyboard.GetState().IsKeyDown(Keys.Enter)) { Objects.Init(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); state = Stat.Game; }

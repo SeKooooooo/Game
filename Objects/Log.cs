@@ -12,7 +12,7 @@ namespace Project1
         public Vector2 Pos { get; private set; }
         Vector2 Dir;
         public static Texture2D Texture2D { get; set; }
-
+        public Vector2 Size = new Vector2(125, 400);
         public Log(Vector2 pos, Vector2 dir)
         {
             Pos = pos;
@@ -28,8 +28,13 @@ namespace Project1
         }
 
         public void Set()
-        {
-            Pos = new Vector2(Objects.Width + Texture2D.Width, Pos.Y);
+        {        
+            var newPos = GenerationObjects.GeneratePos(400);
+            while (Objects.Collision(newPos, Size))
+            {
+                newPos = GenerationObjects.GeneratePos(400);
+            }
+            Pos = newPos;
         }
 
         public void Draw()

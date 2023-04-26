@@ -9,8 +9,9 @@ namespace Project1
     class Island
     {
         public Vector2 Pos { get; private set; }
-        Vector2 Dir;
+        Vector2 Dir;       
         public static Texture2D Texture2D { get; set; }
+        public Vector2 Size = new Vector2(200,200);
 
         public Island(Vector2 pos, Vector2 dir)
         {
@@ -28,7 +29,12 @@ namespace Project1
 
         public void Set()
         {
-            Pos = new Vector2(Objects.Width + Texture2D.Width, Pos.Y);
+            var newPos = GenerationObjects.GeneratePos(200);
+            while (Objects.Collision(newPos, Size))
+            {
+                newPos = GenerationObjects.GeneratePos(200);
+            }
+            Pos = newPos;
         }
 
         public void Draw()

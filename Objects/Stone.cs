@@ -11,6 +11,7 @@ namespace Project1
     {
         public Vector2 Pos { get; private set; }
         Vector2 Dir;
+        public Vector2 Size=new Vector2(300,164);
         public static Texture2D Texture2D { get; set; }
 
         public Stone(Vector2 pos, Vector2 dir)
@@ -29,7 +30,12 @@ namespace Project1
 
         public void Set()
         {
-            Pos = new Vector2(Objects.Width + Texture2D.Width, Pos.Y);
+            var newPos = GenerationObjects.GeneratePos(164);
+            while (Objects.Collision(newPos, Size))
+            {
+                newPos = GenerationObjects.GeneratePos(164);
+            }          
+            Pos=newPos;
         }
 
         public void Draw()

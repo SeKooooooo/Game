@@ -11,6 +11,10 @@ namespace Project1
 {
     class GenerationObjects
     {
-        
+        public static Random Random = new Random(); 
+        public static Vector2 GeneratePos(float height)
+        {
+            return new Vector2(Random.Next(1920,5000),Random.Next(215,875-(int)height));
+        }
     }
 }

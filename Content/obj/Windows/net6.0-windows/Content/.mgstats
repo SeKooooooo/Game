@@ -1,1 +1,11 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/SeKo/Documents/GitHub/Game/Content/defeat.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/defeat.xnb","TextureProcessor","Texture2DContent",2155692,8294485,0,5227549
+"C:/Users/SeKo/Documents/GitHub/Game/Content/digital-art-420801.jpg","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/Background.xnb","TextureProcessor","Texture2DContent",488950,8294485,0,2460434
+"C:/Users/SeKo/Documents/GitHub/Game/Content/duck.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/duck.xnb","TextureProcessor","Texture2DContent",16293,82765,0,0077563
+"C:/Users/SeKo/Documents/GitHub/Game/Content/File.spritefont","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/GameFont.xnb","FontDescriptionProcessor","SpriteFontContent",2089,267295,0,1820268
+"C:/Users/SeKo/Documents/GitHub/Game/Content/island.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/island.xnb","TextureProcessor","Texture2DContent",48743,160085,0,0146884
+"C:/Users/SeKo/Documents/GitHub/Game/Content/log.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/log.xnb","TextureProcessor","Texture2DContent",25955,200085,0,0085193
+"C:/Users/SeKo/Documents/GitHub/Game/Content/shores.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/shores.xnb","TextureProcessor","Texture2DContent",73375,8294485,0,2141923
+"C:/Users/SeKo/Documents/GitHub/Game/Content/stone.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/stone.xnb","TextureProcessor","Texture2DContent",17010,196885,0,0107828
+"C:/Users/SeKo/Documents/GitHub/Game/Content/worm.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/worm.xnb","TextureProcessor","Texture2DContent",2382,4437,0,0029385
+"C:/Users/SeKo/Documents/GitHub/Game/Content/Без имени-2.png","C:/Users/SeKo/Documents/GitHub/Game/Content/bin/Windows/Content/Wave.xnb","TextureProcessor","Texture2DContent",2704,21685,0,0034185

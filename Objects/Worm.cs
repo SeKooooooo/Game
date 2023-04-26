@@ -5,6 +5,7 @@ using Project1.StateGame;
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Project1
 {
@@ -13,11 +14,7 @@ namespace Project1
         public Vector2 Pos { get;set; }
         Vector2 Dir;
         public static Texture2D Texture2D { get; set; }
-        public Worm(Vector2 pos)
-        {
-            Pos = pos;
-        }
-
+        public Vector2 Size = new Vector2(16, 68);
         public Worm(Vector2 pos, Vector2 dir)
         {
             Pos = pos;
@@ -34,7 +31,12 @@ namespace Project1
 
         public void Set()
         {
-            Pos = new Vector2(Objects.Width + Texture2D.Width, Pos.Y);
+            var newPos = GenerationObjects.GeneratePos(68);
+            while (Objects.Collision(newPos, Size))
+            {
+                newPos = GenerationObjects.GeneratePos(68);
+            }
+            Pos = newPos;
         }
 
         public void Draw()
