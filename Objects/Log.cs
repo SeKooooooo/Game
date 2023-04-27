@@ -44,6 +44,8 @@ namespace Project1
 
         public bool Kill(Duck duck)
         {
+            if (Duck.Dive)
+                return false;
             return duck.IsIntersect(new Rectangle((int)Pos.X + 20, (int)Pos.Y+10, Texture2D.Width-40, Texture2D.Height-10));    
         }
 

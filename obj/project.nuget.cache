@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2jCoHHD6kUon05dR6mLkvYXtNg5b+u7WgbLukyzVFXXxsYpWAmw6b3F77xORKGRF1mXD8hahhTOI/5FrMDmbtg==",
+  "dgSpecHash": "zFVynlRYYaJPU+lgEQ1m9EloeL1yKdpnYC7g5HsgPhBYq0wf2GJhQje+w/hleIB+dMo1r2A672LmMzT8vI/GiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SeKo\\Documents\\GitHub\\Game\\Project1.csproj",
+  "projectFilePath": "C:\\Users\\SeKo\\Desktop\\Новая папка (3)\\Project1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SeKo\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Users\\SeKo\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",

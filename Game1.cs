@@ -41,6 +41,7 @@ namespace Project1
             Objects.Init(spriteBatch,graphics.PreferredBackBufferWidth,graphics.PreferredBackBufferHeight);
             Wave.Texture2D = Content.Load<Texture2D>("Wave");
             Duck.Texture2D = Content.Load<Texture2D>("duck");
+            Duck.DiveDuck = Content.Load<Texture2D>("dive");
             Shore.Texture2D = Content.Load<Texture2D>("shores");
             Log.Texture2D=Content.Load<Texture2D>("log");
             Island.Texture2D = Content.Load<Texture2D>("island");
@@ -57,15 +58,15 @@ namespace Project1
             {
                 case Stat.SplashScreen:
                     SplashScreen.Update();
-                    if (Keyboard.GetState().IsKeyDown (Keys.Space)) state = Stat.Game;
+                    if (Keyboard.GetState().IsKeyDown (Keys.T)) state = Stat.Game;
                     if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
                     break;
                 case Stat.Game:
                     Objects.Update();
                     if (Keyboard.GetState().IsKeyDown(Keys.W)) Objects.Duck.Up();
                     if (Keyboard.GetState().IsKeyDown(Keys.S)) Objects.Duck.Down();
-                    if (Keyboard.GetState().IsKeyDown(Keys.Space)) Objects.Duck.Dive();
                     if (Keyboard.GetState().IsKeyDown(Keys.Escape)) state = Stat.SplashScreen;
+                    if (Keyboard.GetState().IsKeyDown(Keys.Space)) Duck.Dive=true;
                     if (Objects.FlagDefeat) state = Stat.Defeat;
                     break;
                 case Stat.Defeat:

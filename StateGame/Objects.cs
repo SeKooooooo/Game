@@ -18,11 +18,11 @@ namespace Project1.StateGame
         public static Duck Duck { get; set; }
         public static List<Worm> Worms;
         static Shore[] Shores { get; set; }
-        public static Log[] Logs { get; set; }
-        public static Island[] Islands { get; set; }
-        public static Stone[] Stones { get; set; }
+        public static List<Log> Logs { get; set; }
+        public static List<Island> Islands { get; set; }
+        public static List<Stone> Stones { get; set; }
         public static int CountWorms;
-        readonly static Vector2 Speed = new Vector2(-5, 0);
+        public static Vector2 Speed = new Vector2(-5, 0);
         public static bool FlagDefeat = false;
 
 
@@ -43,9 +43,15 @@ namespace Project1.StateGame
         public static void DoWorms()
         {
             Worms = new List<Worm>();
+            var size = new Vector2(16,68);
             for (var i = 0; i < 10; i++)
             {
-                Worms.Add(new Worm(new Vector2(1920 + i * 100, 200), Speed));
+                var newPos = GenerationObjects.GeneratePos(68);
+                while (Objects.Collision(newPos, size))
+                {
+                    newPos = GenerationObjects.GeneratePos(68);
+                }
+                Worms.Add(new Worm(newPos, Speed));
             }
         }
 
@@ -63,29 +69,30 @@ namespace Project1.StateGame
 
         public static void DoLogs()
         {
-            Logs = new Log[3];
-            for (var i = 0; i < Logs.Length; i++)
-            {
-                Logs[i] = new Log(new Vector2(1920 + i * 300, 200), Speed);
-            }
+            Logs = new List<Log> { new Log(new Vector2(2120,200), Speed),
+                new Log(new Vector2(2600,410), Speed),
+                new Log(new Vector2(3500,220), Speed)
+        };
+       
+            
         }
 
         public static void DoIslands()
         {
-            Islands = new Island[5];
-            for (var i = 0; i < Islands.Length; i++)
-            {
-                Islands[i] = new Island(new Vector2(1920 + i * 300, 500), Speed);
-            }
+            Islands = new List<Island> { new Island(new Vector2(2800,200), Speed),
+                 new Island(new Vector2(3200,400), Speed),
+                 new Island(new Vector2(3900,600), Speed),
+
+
+        };
         }
 
         public static void DoStones()
         {
-            Stones=new Stone[5];
-            for (var i = 0; i < Stones.Length; i++)
-            {
-                Stones[i] = new Stone(new Vector2(1920+i*300,500) ,Speed);
-            }
+            Stones=new List<Stone> { new Stone(new Vector2(2900,600), Speed),
+                new Stone(new Vector2(3800,300), Speed),
+                new Stone(new Vector2(4200,450), Speed),
+            };
         }
 
         public static void DoShores()
@@ -93,14 +100,13 @@ namespace Project1.StateGame
             Shores = new Shore[2];
             Shores[0] =new Shore(new Vector2(0, 0), Speed);
             Shores[1] = new Shore(new Vector2(1920, 0), Speed);
+
         }
 
         public static void Draw()
         {
             foreach (Wave wave in Waves)
-                wave.Draw();
-            foreach(Log log in Logs)
-                log.Draw();
+                wave.Draw();           
             foreach (Island island in Islands)
                 island.Draw();
             foreach (Stone stone in Stones)
@@ -109,12 +115,25 @@ namespace Project1.StateGame
                 shore.Draw();
             foreach(Worm worm in Worms)
                 worm.Draw();
-            Duck.Draw();
+            if (!Duck.Dive)
+            {
+                foreach (Log log in Logs)
+                    log.Draw();
+                Duck.Draw();
+            }
+            else
+            {
+                Duck.Draw();
+                foreach (Log log in Logs)
+                    log.Draw();
+            }
+            
             SpriteBatch.DrawString(Font, "Worms " + CountWorms.ToString(), new Vector2(1553, 965),Color.Red);
         }
 
         public static void Update()
         {
+            Duck.Update();
             foreach (Wave wave in Waves)
                 wave.Update();
             foreach (Shore shore in Shores)
@@ -157,7 +176,7 @@ namespace Project1.StateGame
         {
             int width = (int)size.X;
             var height= (int)size.Y;
-            var newObj = new Rectangle((int)newPos.X-100,(int)newPos.Y-50,width+200,height+100 );
+            var newObj = new Rectangle((int)newPos.X-150,(int)newPos.Y-100,width+300,height+200 );
             foreach (var obj in Stones)
             {
                 if (!new Rectangle(obj.Pos.ToPoint(),obj.Size.ToPoint()).Intersects(newObj))
@@ -178,7 +197,7 @@ namespace Project1.StateGame
             }
             foreach (var obj in Worms)
             {
-                if (!new Rectangle(obj.Pos.ToPoint(), obj.Size.ToPoint()).Intersects(newObj))
+                if (!new Rectangle(obj.Pos.ToPoint(), obj.Size.ToPoint()).Intersects(new Rectangle((int)newPos.X-50,(int)newPos.Y - 50,width+100, height+100)))
                     continue;
                 return true;
             }
