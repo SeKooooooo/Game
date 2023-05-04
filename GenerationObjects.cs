@@ -14,7 +14,7 @@ namespace Project1
         public static Random Random = new Random(); 
         public static Vector2 GeneratePos(float height)
         {
-            return new Vector2(Random.Next(1920,4000),Random.Next(215,875-(int)height));
+            return new Vector2(Random.Next(1920,4500),Random.Next(215,875-(int)height));
         }
     }
 }

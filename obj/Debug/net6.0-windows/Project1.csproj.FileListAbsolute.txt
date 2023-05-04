@@ -181,3 +181,6 @@ C:\Users\SeKo\Desktop\Новая папка (3)\obj\Debug\net6.0-windows\Project
 C:\Users\SeKo\Desktop\Новая папка (3)\obj\Debug\net6.0-windows\Project1.genruntimeconfig.cache
 C:\Users\SeKo\Desktop\Новая папка (3)\obj\Debug\net6.0-windows\ref\Project1.dll
 C:\Users\SeKo\Desktop\Новая папка (3)\bin\Debug\net6.0-windows\Content\dive.xnb
+C:\Users\SeKo\Desktop\Новая папка (3)\bin\Debug\net6.0-windows\Content\nest.xnb
+C:\Users\SeKo\Desktop\Новая папка (3)\bin\Debug\net6.0-windows\Content\duck_1.xnb
+C:\Users\SeKo\Desktop\Новая папка (3)\bin\Debug\net6.0-windows\Content\duck_2.xnb

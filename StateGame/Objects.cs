@@ -21,9 +21,11 @@ namespace Project1.StateGame
         public static List<Log> Logs { get; set; }
         public static List<Island> Islands { get; set; }
         public static List<Stone> Stones { get; set; }
+        public static Nest Nest { get; set; }
         public static int CountWorms;
         public static Vector2 Speed = new Vector2(-5, 0);
         public static bool FlagDefeat = false;
+        public static bool FlagWin = false;       
 
 
         public static void Init(SpriteBatch SpriteBatch, int Width, int Height)
@@ -31,6 +33,8 @@ namespace Project1.StateGame
             Objects.Width = Width;
             Objects.Height = Height;
             Objects.SpriteBatch = SpriteBatch;
+            Speed = new Vector2(-5, 0);
+            Nest = new Nest(new Vector2(2000, 0), Speed);
             DoWaves();
             Duck = new Duck(new Vector2(200, Objects.Height / 2));
             DoShores();
@@ -39,6 +43,8 @@ namespace Project1.StateGame
             DoStones();
             DoWorms();
             CountWorms = 0;
+            FlagWin = false;
+            Duck.Length = 340;
         }
         public static void DoWorms()
         {
@@ -47,7 +53,7 @@ namespace Project1.StateGame
             for (var i = 0; i < 10; i++)
             {
                 var newPos = GenerationObjects.GeneratePos(68);
-                while (Objects.Collision(newPos, size))
+                while (Collision(newPos, size))
                 {
                     newPos = GenerationObjects.GeneratePos(68);
                 }
@@ -115,6 +121,7 @@ namespace Project1.StateGame
                 shore.Draw();
             foreach(Worm worm in Worms)
                 worm.Draw();
+            Nest.Draw();
             if (!Duck.Dive)
             {
                 foreach (Log log in Logs)
@@ -127,12 +134,12 @@ namespace Project1.StateGame
                 foreach (Log log in Logs)
                     log.Draw();
             }
-            
             SpriteBatch.DrawString(Font, "Worms " + CountWorms.ToString(), new Vector2(1553, 965),Color.Red);
         }
 
         public static void Update()
         {
+            Nest.Update();
             Duck.Update();
             foreach (Wave wave in Waves)
                 wave.Update();
@@ -170,6 +177,9 @@ namespace Project1.StateGame
                 if (stone.Kill(Duck))
                     FlagDefeat = true;
             }
+            if (Nest.Win(Duck))
+                Speed = new Vector2(0,0);
+
         }
 
         public static bool Collision(Vector2 newPos,Vector2 size)

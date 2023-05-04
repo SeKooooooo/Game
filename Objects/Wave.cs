@@ -28,8 +28,9 @@ namespace Project1
         }
         public void Update()
         {
+            Dir = Objects.Speed;
             Pos += Dir;
-            if (Pos.X < 0)
+            if (Pos.X < -Texture2D.Width && !Objects.FlagWin)
             {
                 Set();
             }
