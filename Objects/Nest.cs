@@ -36,7 +36,7 @@ namespace Project1
         }
         public bool Win(Duck duck)
         {
-            return duck.IsIntersect(new Rectangle((int)Pos.X- 20, (int)Pos.Y, Texture2D.Width , Texture2D.Height ));
+            return duck.IsIntersect(new Rectangle((int)Pos.X- 20, (int)Pos.Y, Texture2D.Width , Texture2D.Height));
         }
     }
 }

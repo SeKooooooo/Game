@@ -61,12 +61,9 @@ namespace Project1
         }
         public bool IsIntersect(Rectangle rectangle)
         {
-
             return rectangle.Intersects(new Rectangle((int)Pos.X, (int)Pos.Y + 80, DuckDefault.Width - 30, DuckDefault.Height - 80)) ||
                 rectangle.Intersects(new Rectangle((int)Pos.X, (int)Pos.Y + 80, Duck1.Width, Duck1.Height - 80)) ||
                 rectangle.Intersects(new Rectangle((int)Pos.X, (int)Pos.Y + 80, Duck2.Width, Duck2.Height - 80));
-
-
         }
     }
 }

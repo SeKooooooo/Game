@@ -11,7 +11,8 @@ namespace Project1
         Game,
         Defeat,
         Win,
-        Pause,
+        Tutorial,
+        Mode,
     }
     public class Game1 : Game
     {
@@ -38,6 +39,20 @@ namespace Project1
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             SplashScreen.Backgroung = Content.Load<Texture2D>("Background");
+            SplashScreen.Play =Content.Load<Texture2D>("but-play");
+            SplashScreen.Tutorial = Content.Load<Texture2D>("but-tutorial");
+            SplashScreen.Exit = Content.Load<Texture2D>("but-exit");
+            Tutorial.Backgroung = Content.Load<Texture2D>("tutorial");
+            Tutorial.Exit = Content.Load<Texture2D>("but-exit3");
+            Mode.Backgroung = Content.Load<Texture2D>("Background");
+            Mode.Ordinary = Content.Load<Texture2D>("but-ordinary");
+            Mode.Infinity = Content.Load<Texture2D>("but-infinity");
+            Defeat.Backgroung = Content.Load<Texture2D>("defeat");
+            Defeat.Restart = Content.Load<Texture2D>("but-restart");
+            Defeat.Exit = Content.Load<Texture2D>("but-exit2");
+            Win.Backgroung = Content.Load<Texture2D>("win");
+            Win.Restart = Content.Load<Texture2D>("but-restart2");
+            Win.Exit = Content.Load<Texture2D>("but-exit4");
             Nest.Texture2D = Content.Load<Texture2D>("nest");
             Objects.Init(spriteBatch,graphics.PreferredBackBufferWidth,graphics.PreferredBackBufferHeight);
             Wave.Texture2D = Content.Load<Texture2D>("Wave");
@@ -47,8 +62,7 @@ namespace Project1
             Duck.DuckDive = Content.Load<Texture2D>("dive");
             Shore.Texture2D = Content.Load<Texture2D>("shores");
             Log.Texture2D=Content.Load<Texture2D>("log");
-            Island.Texture2D = Content.Load<Texture2D>("island");
-            Defeat.Backgroung = Content.Load<Texture2D>("defeat");
+            Island.Texture2D = Content.Load<Texture2D>("island");        
             Stone.Texture2D = Content.Load<Texture2D>("stone");
             Worm.Texture2D = Content.Load<Texture2D>("worm");
             Objects.Font = Content.Load<SpriteFont>("GameFont");
@@ -62,30 +76,39 @@ namespace Project1
             {
                 case Stat.SplashScreen:
                     SplashScreen.Update();
-                    if (Keyboard.GetState().IsKeyDown (Keys.T)) state = Stat.Game;
-                    if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
+                    if (SplashScreen.ButtonPlay.Pointed(Mouse.GetState().X, Mouse.GetState().Y) &&Mouse.GetState().LeftButton==ButtonState.Pressed)  state = Stat.Mode;                  
+                    if (SplashScreen.ButtonExit.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) Exit();
+                    if (SplashScreen.ButtonTutorial.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) state = Stat.Tutorial;
                     break;
                 case Stat.Game:
                     Objects.Update();
                     if (Keyboard.GetState().IsKeyDown(Keys.W)) Objects.Duck.Up();
                     if (Keyboard.GetState().IsKeyDown(Keys.S)) Objects.Duck.Down();
-                    if (Keyboard.GetState().IsKeyDown(Keys.Escape)) state = Stat.SplashScreen;
                     if (Keyboard.GetState().IsKeyDown(Keys.Space) && !Duck.PushSpace) {Duck.Dive=true; Duck.PushSpace = true;}
                     if (Keyboard.GetState().IsKeyUp(Keys.Space)) Duck.PushSpace = false;
+                    if (Objects.FlagWin) state = Stat.Win;
                     if (Objects.FlagDefeat) state = Stat.Defeat;
                     break;
                 case Stat.Defeat:
                     Defeat.Update();
-                    if (Keyboard.GetState().IsKeyDown(Keys.Enter)) { Objects.Init(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); state = Stat.Game; }
+                    if (Defeat.ButtonRestart.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed){ Objects.Init(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); state = Stat.Game; }
+                    if (Defeat.ButtonExit.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) state = Stat.SplashScreen;
                     break;
-            }
-                
-
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
-
-            // TODO: Add your update logic here
-
+                case Stat.Win:
+                    Win.Update();
+                    if (Win.ButtonRestart.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) { Objects.Init(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); state = Stat.Game; }
+                    if (Win.ButtonExit.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) state = Stat.SplashScreen;
+                    break;
+                case Stat.Mode:
+                    Mode.Update();
+                    if (Mode.ButtonOrdinary.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) { state = Stat.Game; Objects.Init(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); }
+                    if (Mode.ButtonInfinity.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) state = Stat.SplashScreen;
+                    break;
+                case Stat.Tutorial:
+                    Tutorial.Update();
+                    if (Tutorial.ButtonExit.Pointed(Mouse.GetState().X, Mouse.GetState().Y) && Mouse.GetState().LeftButton == ButtonState.Pressed) state= Stat.SplashScreen;
+                    break;
+            }            
             base.Update(gameTime);
         }
 
@@ -104,9 +127,17 @@ namespace Project1
                 case Stat.Defeat:
                     Defeat.Draw(spriteBatch);
                     break;
+                case Stat.Tutorial:
+                    Tutorial.Draw(spriteBatch);
+                    break;
+                case Stat.Mode:
+                    Mode.Draw(spriteBatch);
+                    break;
+                case Stat.Win:
+                    Win.Draw(spriteBatch);
+                    break;
             }
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }

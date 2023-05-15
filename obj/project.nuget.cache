@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zFVynlRYYaJPU+lgEQ1m9EloeL1yKdpnYC7g5HsgPhBYq0wf2GJhQje+w/hleIB+dMo1r2A672LmMzT8vI/GiQ==",
+  "dgSpecHash": "0fXMXth/r1VAMvr1TnrWG0Dcxq6q81KvCwOHvyHCpFBNWwg5Z9Hn+SCXFDehxat8wZO2PuGu5mdb20ieR4OChw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SeKo\\Desktop\\Новая папка (3)\\Project1.csproj",
+  "projectFilePath": "C:\\Users\\SeKo\\Desktop\\Новая папка (3) — копия\\Project1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SeKo\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Users\\SeKo\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",

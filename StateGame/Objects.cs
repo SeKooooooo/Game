@@ -37,6 +37,7 @@ namespace Project1.StateGame
             Nest = new Nest(new Vector2(2000, 0), Speed);
             DoWaves();
             Duck = new Duck(new Vector2(200, Objects.Height / 2));
+            Duck.Dive = false;
             DoShores();
             DoLogs();
             DoIslands();
@@ -215,4 +216,3 @@ namespace Project1.StateGame
         }
     }
 }
-
